@@ -4,67 +4,25 @@ export function handleSubmit(event) {
 
     // Client.checkForName(formText)
 
-    console.log("::: Form Submitted :::");    
+    console.log("::: Form Submitted :::");
 
-    fetch('http://localhost:3031/getAylienObj')
+    const userinput = document.getElementById('name').value;
+    console.log(userinput);
+    console.log(JSON.stringify(userinput));
+    const userResponse = {userinput: userinput};
+
+    fetch('http://localhost:3031/addUserInput', {
+        method: 'POST',
+        credential: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userResponse)
+    })
+    .then (res => res.json())
     .then (function(res) {
         console.dir(res);
-        // const response = await res.json();
-        let outputText = document.getElementById('results');
+        const outputText = document.getElementById('results');
         outputText.innerHTML = res.polarity;
     })
-
-    //     res.sentiment({
-    //         'text' : 'John is a very good football player!'
-    //     }, function(error, response) {
-    //         if (error === null) {
-    //             console.log(response);
-    //         }
-    //     });
-    // });
 }
-
-
-    // getAylienObj();
-    // requestAylienData();
-    // .then((data) => {
-    //     let outputText = document.getElementById('results');
-    //     outputText.innerHTML = data;
-    // })
-
-    // TODO: could go to an external API
-    // fetch('http://localhost:3031/test')
-    // fetch(BASE_URL + ZIP + API_KEY)
-    // .then(res => res.json())
-    // .then(function(res) {
-    //     document.getElementById('results').innerHTML = JSON.stringify(res);
-    //     console.log('message is: ' + JSON.stringify(res));
-    // })
-
-
-// function getAylienObj() {
-//     fetch('http://localhost:3031/getAylienObj')
-//     .then (function(res) {
-//         console.dir(res);
-//         res.sentiment({
-//             'text' : 'John is a very good football player!'
-//         }, function(error, response) {
-//             if (error === null) {
-//                 console.log(response);
-//             } else {
-//                 console.log(error);
-//             }
-//         });
-//     })
-// }
-
-// function requestAylienData() {
-//     console.log('inside makeCall');
-//     fetch('/analyzeText')
-//     .then(function(res) {
-//         console.dir(res);
-//         document.getElementById('results').innerHTML = JSON.stringify(res);
-//     })
-// };
-
-// export { handleSubmit }

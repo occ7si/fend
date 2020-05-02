@@ -39,35 +39,16 @@ app.listen(3031, function () {
     console.log('Example app listening on port 3031!')
 })
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-})
 
-app.get('/analyzeText', function (req, res) {
-    console.log('inside server app');
+app.post('/addUserInput', function(req, res) {
+    console.log('inside post function');
+    const data = req.body;
+    console.log('userinput is: ' + data.userinput);
+
     textapi.sentiment({
-        'text' : 'John is a very good football player!'
+        'text': data.userinput
     }, function(error, response) {
         if (error === null) {
-            console.log(response);
-            res.send(response);
-        } else {
-            res.send(error);
-        }
-    });
-    // res.send(apiResponse);
-});
-
-
-app.get('/getAylienObj', function (req, res) {
-    console.log(process.env.API_ID);
-    console.log(process.env.API_KEY);
-    console.log('in server');
-    textapi.sentiment({
-        'text' : 'John is a very good football player!'
-    }, function(error, response) {
-        if (error === null) {
-            console.dir(response);
             res.send(response);
         } else {
             console.log('error is: ' + error);
