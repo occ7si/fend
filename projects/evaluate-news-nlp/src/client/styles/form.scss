@@ -10,8 +10,14 @@ input {
     line-height: 16px;
     margin: 10px 0;
  
-    &:hover {
-        background-color: orange;
+    &[type=submit]{
+        background-color: rgb(10, 189, 192);
+        &:hover {
+            background-color: darkturquoise;
+        }
     }
 }
 
+label {
+    font-size: 2em;
+}

@@ -2,13 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Test</title>
-        <!-- <link rel="stylesheet" href="/styles/resets.css">
-        <link rel="stylesheet" href="/styles/base.css">
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/form.css">
-        <link rel="stylesheet" href="/styles/footer.css"> -->
-        <!-- <script type="text/javascript" src="../../../dist/main.js"> -->
+        <title>Tweet Analyzer</title>
         </script>
     </head>
 
@@ -25,15 +19,17 @@
 
         <main>
             <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="Client.onBlur()" placeholder="Name">
+                <label for="sentiment-form">Analyze your tweet</label>
+                <form id = "sentiment-form" class="" onsubmit="return Client.handleSubmit(event)">
+                    <input id="tweet" type="text" name="input" value="" placeholder="Enter a tweet">
                     <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
 
             <section>
-                <strong>Form Results:</strong>
+                <h1>Form Results:</h1>
                 <div id="results"></div>
+                <div id="errorMsg"></div>
             </section>
         </main>
 
@@ -41,6 +37,5 @@
             <p>This is a footer</p>
         </footer>
         <script type="text/javascript" src="main.js"></script>
-
     </body>
 </html>

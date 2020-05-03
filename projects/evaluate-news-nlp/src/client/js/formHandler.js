@@ -1,28 +1,29 @@
-
 export function handleSubmit(event) {
     event.preventDefault();
-
-    // Client.checkForName(formText)
-
     console.log("::: Form Submitted :::");
+    const userinput = document.getElementById('tweet').value;
+    
+    // Remove error message if any is shown
+    Client.resetErrorMsg();
 
-    const userinput = document.getElementById('name').value;
-    console.log(userinput);
-    console.log(JSON.stringify(userinput));
-    const userResponse = {userinput: userinput};
+    // Don't make the post request if user input is empty
+    if (userinput === '') {
+        Client.showErrorMsg('Please enter a tweet!');
+        return;
+    }
 
+    // Make POST request to server to receive sentiment analysis for user input
+    const userInput = {userinput: userinput};
     fetch('http://localhost:3031/addUserInput', {
         method: 'POST',
         credential: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userResponse)
+        body: JSON.stringify(userInput)
     })
     .then (res => res.json())
     .then (function(res) {
-        console.dir(res);
-        const outputText = document.getElementById('results');
-        outputText.innerHTML = res.polarity;
+        Client.displaySentimentAnalysis(res);
     })
 }
