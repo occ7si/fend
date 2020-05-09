@@ -40,7 +40,7 @@ app.post('/addUserInput', function(req, res) {
         if (error === null) {
             res.send(response);
         } else {
-            console.log('Error: ' + error);
+            console.log('Error response received from Aylien request: ' + error);
         }
     })
 });

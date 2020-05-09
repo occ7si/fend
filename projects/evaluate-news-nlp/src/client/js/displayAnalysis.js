@@ -1,4 +1,9 @@
 export function displaySentimentAnalysis(aylienResponse) {
+
+// throw error if aylienResponse is an empty object
+    if (Object.entries(aylienResponse).length === 0){
+        throw new Error("Input from AylienAPI is empty");
+    }
     const outputTextContainer = document.getElementById('results');
     let sentimentPolarity = document.getElementById('sentimentPolarity');
     let confidenceScore = document.getElementById('confidenceScore');

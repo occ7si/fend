@@ -1,6 +1,8 @@
 export function handleSubmit(event) {
+    if ( event === null ){
+        throw new Error('In handleSubmit function: Incoming event is null');
+    }
     event.preventDefault();
-    console.log("::: Form Submitted :::");
     const userinput = document.getElementById('tweet').value;
     
     // Remove error message if any is shown
@@ -11,6 +13,7 @@ export function handleSubmit(event) {
         Client.showErrorMsg('Please enter a tweet!');
         return;
     }
+    console.log("::: Form Submitted :::");
 
     // Make POST request to server to receive sentiment analysis for user input
     const userInput = {userinput: userinput};
